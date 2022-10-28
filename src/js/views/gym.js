@@ -1,43 +1,73 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-
-import { Context } from "../store/appContext";
-
-import "../../styles/demo.css";
+import React, { useState, useMemo } from "react";
+import "../../styles/gym.css";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import usePlacesAutocomplete, {
+	getGeocode,
+	getLatLng,
+  } from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
 
 export const Gym = () => {
-	const { store, actions } = useContext(Context);
+	const {isLoaded} = useLoadScript({
+		googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+		libraries: ['places'],
+	})
+
+	if (!isLoaded) return <div>Loading...</div>
+	return <Map />
+};
+
+const Map = () => {
+	const center = useMemo(() => ({ lat:25.761681, lng: -80.191788 }), []);
+	const [selected, setSelected] = useState(null);
+    return (
+		<>
+            <div className="placeContainer">
+				<PlacesAutocomplete setSelected={setSelected} />
+			</div>
+
+        <GoogleMap zoom={15} 
+		center={center}
+		mapContainerClassName="mapContainer">
+			{selected && <Marker position={selected} />}
+		</GoogleMap>
+		</>
+	);
+}
+
+const PlacesAutocomplete = ({ setSelected }) => {
+	const {
+		ready, 
+		value, 
+		setValue, 
+		suggestions: { status, data}, 
+		clearSuggestions
+		} = usePlacesAutocomplete();
+
+		const handleSelect = async (address) => {
+			setValue(address, false);
+			clearSuggestions();
+
+			const result = await getGeocode({address});
+			const {lat, lng} = await getLatLng(result[0]);
+			setSelected({lat, lng});
+		}
 
 	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
-};
+		<Combobox onSelect={handleSelect}>
+			<ComboboxInput
+                value={value} onChange={(e) => setValue(e.target.value)} disabled={!ready} className="combobox-input"/>
+			<ComboboxPopover>
+				<ComboboxList>
+					{status === "OK" && data.map(({place_id, description}) => <ComboboxOption key={place_id} value={description} />)}
+                </ComboboxList>
+			</ComboboxPopover>
+		</Combobox>
+	)
+}

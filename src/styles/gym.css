@@ -1,0 +1,8 @@
+.mapContainer{
+    height: 100vh;
+    width: 100%;
+}
+.combobox-input{
+    width: 25%;
+    padding: 1px;
+}
