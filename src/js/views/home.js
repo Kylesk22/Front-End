@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
@@ -10,6 +10,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	let { userId } = useParams();
 
 	const handleClick = () => {
 		actions.login(email, password)
@@ -41,6 +42,7 @@ export const Home = () => {
 						</Link>
 						<br/>
 						
+						
 						<span className="btn btn-primary btn-md mt-1" href="#" role="button" onClick={handleClick}>Login</span>
 						
 						<hr className="mt-4 mx-5" />
@@ -52,8 +54,8 @@ export const Home = () => {
 
 				
 					</div>
-				</div> : Navigate('/account/:user_id')}
-				
+				</div> :<Redirect to= {`/account/`+ store.email}> </Redirect>
+				}
 			</div>
 		</div>
 	)
