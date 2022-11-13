@@ -14,16 +14,17 @@ export const Register = () => {
 
 	const handleClick = () => {
 		actions.signup(email, password, first_name, last_name);
+        actions.setEmail(email);
         // Navigate('/account/:user_id')
 	};
 	
 
 	return(
-		<div>
+		<div style={{textAlign: "center"}}>
             {(!store.token)?
             <div className="form" onSubmit={() => alert("submitted")}>
                 <h3>Register</h3>
-                <input type= "text" placeholder="Email" value= {email} onChange={(e) => setEmail(e.target.value)}></input>
+                <input type= "text" placeholder="Email" value= {email} onChange={(e) => {setEmail(e.target.value)}}></input>
                 <br/>
                 <input type= "password" placeholder ="Password" style={{"margin": "8px"}} value={password} onChange={(e)=> setPassword(e.target.value)}></input>
                 <br/>
