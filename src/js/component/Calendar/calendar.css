@@ -1,0 +1,58 @@
+.dates {
+    text-align: center;
+    width: 80px;
+    border: 1px solid white;
+}
+
+.row {
+    height: fit-content;
+}
+
+.month {
+    text-align: center;
+    width: 300px;
+    border: 1px solid white;
+}
+
+
+.col {
+    justify-content: end;
+}
+
+.nums {
+    text-align: center;
+    width: 80px;
+    min-height: 100px;
+    border: 1px solid white;
+    margin-bottom: 20px;
+    
+}
+
+.inputPopUp {
+    text-align: right;
+}
+
+#btnWO {
+    text-align: center;
+    width: 90px;
+    border: black solid 1px;
+}
+
+.dropdown-menu {
+    width: 200px;
+    z-index: 1;
+   
+}
+
+.save {
+    text-align: right;
+}
+
+#btnGroupDrop1 {
+    z-index: 1;
+    text-align: center;
+}
+
+.btn-danger {
+    font-size: xx-small;
+}
