@@ -25,8 +25,12 @@ export const Gym = () => {
 
 	return (
 		<div className="container">
-			{(gym === "Anytime")?
-				<Anytime/>: ""
+			{(sessionStorage.getItem("gym") === "Anytime")?
+				<Anytime/>: 
+				(sessionStorage.getItem("gym") === "LA")?
+				<LA/>:
+				(sessionStorage.getItem("gym") === "Planet")?
+				<Planet/>: ""
 			}
 	
 			<Link to="/">

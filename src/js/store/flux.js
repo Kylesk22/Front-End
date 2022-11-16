@@ -56,10 +56,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({loggedIn: false});
 			},
 			
-			signup: async (email, password, first_name, last_name) => {
+			signup: async (email, password, first_name, last_name, gym2) => {
 
 				try {
-					const resp = await fetch('https://3001-kylesk22-backend-v1vfho00s6i.ws-us75.gitpod.io/api/signup', {
+					const resp = await fetch('https://3001-kylesk22-backend-v1vfho00s6i.ws-us74.gitpod.io/api/signup', {
 						method: "POST", 
 						headers: {
 						"Content-Type": "application/json"
@@ -68,24 +68,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"email": email,
 							"password": password,
 							"first_name": first_name,
-							"last_name": last_name
+							"last_name": last_name,
+							"gym": gym2
 						})
 
 					})
-					if (resp.status !== 200) {
-					alert("There has been an error")
-					return false
-				}
+					
 				const data = await resp.json();		
 				sessionStorage.setItem("token", data.access_token);
 				sessionStorage.setItem("email", email);
+				sessionStorage.setItem("firstName", first_name);
+				sessionStorage.setItem("lastName", last_name);
+				sessionStorage.setItem("gym", gym2);
 				setStore({token: data.access_token});
 				setStore({email: email})
 				setStore({loggedIn: true})
 				
 				}
 				catch(err) {
-					console.error(err);
+					alert("Email already in use, try another email!");
 				}
 			},
 
@@ -94,7 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 			
 				try{
-					const resp = await fetch('https://3001-kylesk22-backend-v1vfho00s6i.ws-us75.gitpod.io/api/login', {
+					const resp = await fetch('https://3001-kylesk22-backend-v1vfho00s6i.ws-us74.gitpod.io/api/login', {
 						method: "POST",
 						headers: {
 						"Content-Type": "application/json"
@@ -115,13 +116,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					sessionStorage.setItem("email", email);
 					sessionStorage.setItem("firstName", data.user.first_name);
 					sessionStorage.setItem("lastName", data.user.last_name);
-					sessionStorage.setItem("gym", data.user.gym);
+					let gym = data.gym
+					let gym1 = gym.replace(/</g , "").replace(/>/g, "")
+					console.log(gym1)
+					sessionStorage.setItem("gym", gym1);
 					setStore({token: data.access_token});
 					setStore({email: email});
 					setStore({loggedIn: true});
 					setStore({firstName: data.user.first_name});
 					setStore({lastName: data.user.last_name});
-					setStore({gym: data.user.gym});
+					setStore({gym: gym1});
 					setStore({friends: data.user.friends});
 					setStore({sunday: data.user.sunday});
 					setStore({monday: data.user.monday})
