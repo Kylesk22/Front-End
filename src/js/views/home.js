@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 import { Navigate } from "react-router";
 import BKG from "../../img/weights.png";
+import { Post } from "../component/post";
+
+
 
 
 export const Home = () => {
@@ -17,7 +20,15 @@ export const Home = () => {
 		actions.login(email, password)
 		
 	};
+
+	const [title, setTitle] = useState("")
+	const [content, setContent] = useState("")
 	
+	const handlePost = () => {
+		actions.post(title, content)
+		console.log(title)
+		console.log(content)
+	}
 
 	return(
 		<div id = "bkg" style={{...{backgroundImage: `url(${BKG})`}, ...{backgroundSize: "1400px"} }}>
@@ -58,6 +69,22 @@ export const Home = () => {
 					</div>
 				</div> :<Redirect to= {`/account/`+ store.email}> </Redirect>
 				}
+			</div>
+			<div>
+				<form>
+            		<div class="form-group">
+                		<label for="exampleFormControlInput1">Title</label>
+                		<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)}/>
+            		</div>
+            		<div class="form-group">
+						<label for="exampleFormControlInput1">Content</label>
+                		<input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)}/>
+            		</div>
+					<div>
+						<span className="btn btn-primary btn-md mt-5" href="#" role="button" onClick={handlePost}>Post</span>
+					</div>
+						
+        		</form>
 			</div>
 		</div>
 	)

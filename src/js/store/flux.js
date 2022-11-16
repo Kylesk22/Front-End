@@ -55,11 +55,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({email: null});
 				setStore({loggedIn: false});
 			},
+
+			post: async (title, content, email) => {
+				try {
+					const resp = await fetch(`/api/post/${email}`, {
+						method: "POST", 
+						headers: {
+						"Content-Type": "application/json",
+
+						},
+						mode: "no-cors",
+						body: JSON.stringify({
+							"title": title,
+							"content": content
+						})
+					})
+				}
+				catch(err) {
+					alert("Post did not submit correctly check requirements");
+					console.error(err)
+				}
+			},
 			
 			signup: async (email, password, first_name, last_name, gym2) => {
 
 				try {
-					const resp = await fetch('https://3001-kylesk22-backend-v1vfho00s6i.ws-us74.gitpod.io/api/signup', {
+					const resp = await fetch('https://3001-kylesk22-backend-qg4d3y57lwx.ws-us74.gitpod.io/api/signup', {
 						method: "POST", 
 						headers: {
 						"Content-Type": "application/json"
@@ -73,6 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 
 					})
+					
 					
 				const data = await resp.json();		
 				sessionStorage.setItem("token", data.access_token);
@@ -95,7 +117,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 			
 				try{
-					const resp = await fetch('https://3001-kylesk22-backend-v1vfho00s6i.ws-us74.gitpod.io/api/login', {
+					const resp = await fetch('https://3001-kylesk22-backend-qg4d3y57lwx.ws-us74.gitpod.io/api/login', {
 						method: "POST",
 						headers: {
 						"Content-Type": "application/json"
@@ -153,7 +175,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setCalendar: async(sunday, monday, tuesday, wednesday, thursday, friday, saturday, email, token) => {
 				try{
-					const resp= await fetch(`https://3001-kylesk22-backend-v1vfho00s6i.ws-us74.gitpod.io/api/user/workouts/${email}` , {
+					const resp= await fetch(`https://3001-kylesk22-backend-qg4d3y57lwx.ws-us74.gitpod.io/api/user/workouts/${email}` , {
 						method: ("POST"),
 						headers: {
 						"Content-Type": "application/json",
@@ -193,7 +215,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const email = sessionStorage.getItem("email");
 				
 				try{
-					const resp = await fetch(`https://3001-kylesk22-backend-v1vfho00s6i.ws-us74.gitpod.io/api/user/workouts/${email}`, {
+					const resp = await fetch(`https://3001-kylesk22-backend-qg4d3y57lwx.ws-us74.gitpod.io/api/user/workouts/${email}`, {
 						method: "GET",
 						headers: {
 						"Content-Type": "application/json",
