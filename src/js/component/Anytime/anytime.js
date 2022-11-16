@@ -14,9 +14,24 @@ export const Anytime = ()=> {
 
 
     return(
-    <div style={{...{backgroundImage: `url(${AnyFit})`}, ...{backgroundSize: "600px"} }}>
+    <>
+        <img className="image" src={AnyFit} style={{margin: "auto"}}>
         
 
        
-    </div>
+        </img>
+        <div className="row" style={{textAlign: "center"}}>
+            <div className= "col-6" id= "post">
+                <h4>Post</h4>
+            </div>
+            <div className = "col-6" id= "events">
+                <h4>Events</h4>
+                <ul>
+                    <li>Zumba - everyday - 10am</li>
+                    <li>"Biggest Loser Challenge" - month of October - Oct 1st</li>
+                    <li>Cardio Challenge - fridays - 12pm</li>
+                </ul>
+            </div>
+        </div>
+    </>
 )}
