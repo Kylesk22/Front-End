@@ -23,6 +23,7 @@ export const Gym = () => {
 	// 		break;
 	// }
 
+
 	return (
 		<div className="container">
 			{(sessionStorage.getItem("gym") === "Anytime")?
@@ -32,7 +33,7 @@ export const Gym = () => {
 				(sessionStorage.getItem("gym") === "Planet")?
 				<Planet/>: ""
 			}
-	
+
 			<Link to="/">
 				<button className="btn btn-primary">Back home</button>
 			</Link>

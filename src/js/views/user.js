@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 import { Calendar } from "../component/Calendar/calendar";
 import { Bio } from "../component/Bio/bio";
 import { ProfilePic } from "../component/ProfilePic/profilePic";
+import { MyChatComponent } from "../component/Messaging/messaging";
 
 
 export const User = (props) => {
@@ -18,6 +19,7 @@ export const User = (props) => {
 				</h1>
 				<ProfilePic/>
 				<Bio />
+				
 
 				<hr className="my-4" />
 
