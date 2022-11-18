@@ -30,7 +30,7 @@ export const Gym = () => {
 
 
 	return (
-		<div style= {{...{backgroundImage: `url(${Gym1})`}, ...{backgroundSize: "1500px"}}}>
+		<div style= {{...{backgroundImage: `url(${Gym1})`}, ...{backgroundSize: "1500px"}, position: "relatiave", zIndex: "2"}}>
 		<div className="container" style={{textAlign: "center"}}>
 			{(sessionStorage.getItem("gym") === "Anytime")?
 				<Anytime users={users} />: 
