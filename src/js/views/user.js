@@ -6,6 +6,7 @@ import { Calendar } from "../component/Calendar/calendar";
 import { Bio } from "../component/Bio/bio";
 import { ProfilePic } from "../component/ProfilePic/profilePic";
 import { MyChatComponent } from "../component/Messaging/messaging";
+import Gym2 from "../../img/gym2.png"
 
 
 export const User = (props) => {
@@ -13,12 +14,20 @@ export const User = (props) => {
 	const params = useParams();
 	return (
 		<div>
-			<div className="jumbotron" style = {{textAlign: "center"}}>
-				<h1 className="display-4">
+			<div className="jumbotron" >
+				<div className="row" style={{...{backgroundImage: `url(${Gym2})`}, ...{backgroundSize: "1500px"}, backgroundPosition:"center", paddingBottom: "20px",}}>
+					<div className="col-6" style={{textAlign: "left"}}>
+						<h1 className="display-4">
 					
-				</h1>
-				<ProfilePic/>
-				<Bio />
+						</h1>
+				
+						<ProfilePic />
+						<Bio />
+					</div>
+					<div className="col-6" style={{textAlign:"center"}}>
+						<Calendar />
+					</div>
+				</div>
 				
 
 				<hr className="my-4" />
@@ -35,7 +44,7 @@ export const User = (props) => {
 			</div>
 			
 			<div>
-				<Calendar/>
+				
 			</div>
 			
 		</div>

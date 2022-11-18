@@ -1,42 +1,47 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Anytime } from "../component/Anytime/anytime";
+import axios from "axios";
+import Gym1 from "../component/Anytime/Images/gym1.png"
 
 import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
+
 export const Gym = () => {
 	const { store, actions } = useContext(Context);
-	let gym = sessionStorage.getItem("Gym");
+	const [users, setUsers] = useState([]);
+	const gym = sessionStorage.getItem("Gym");
 	let display;
 
-	// switch(gym) {
-	// 	case "Anytime":
-	// 		display = "Anytime";
-	// 		break;
-	// 	case "LAFitness":
-	// 		display = "LA";
-	// 		break;
-	// 	case "GoldsGym":
-	// 		display = "Golds";
-	// 		break;
-	// }
+	useEffect(()=>{
+		axios.get(`https://spotter1.herokuapp.com/api/user/profiles/${gym}`, {}, {Authorization: `Bearer sessionStorage.getItem("token")`})
+		.then(resp => {
+			let data = resp.data;
+			setUsers(data);
+			
+			
+
+		})
+		.catch(err => console.log(err))
+
+	},[])
 
 
 	return (
-		<div className="container">
+		<div style= {{...{backgroundImage: `url(${Gym1})`}, ...{backgroundSize: "1500px"}}}>
+		<div className="container" style={{textAlign: "center"}}>
 			{(sessionStorage.getItem("gym") === "Anytime")?
-				<Anytime/>: 
+				<Anytime users={users} />: 
 				(sessionStorage.getItem("gym") === "LA")?
 				<LA/>:
 				(sessionStorage.getItem("gym") === "Planet")?
 				<Planet/>: ""
 			}
 
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
+			
+		</div>
 		</div>
 	);
 };
