@@ -67,10 +67,10 @@ export const Calendar = props => {
 
 
 return(
-    <div>
+    <div style={{marginTop: "50px", marginRight: "20px"}}>
         <div className="row">
-            <div className="col-8"></div>
-            <div className="col-4">
+            
+            <div className="col-4" style={{textAlign: "center", marginLeft: "260px"}}>
                 <h3>Workout Schedule</h3>
             </div>
         </div>
@@ -80,28 +80,28 @@ return(
             
         </div>
             
-            <div className="col d-flex">
+            <div className="col d-flex" id="cal">
                 
                         <div className="dates">
-                            <div>Sun</div>
+                            <div><strong>Sun</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Mon</div>
+                            <div><strong>Mon</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Tue</div>
+                            <div><strong>Tue</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Wed</div>
+                            <div><strong>Wed</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Thur</div>
+                            <div><strong>Thur</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Fri</div>
+                            <div><strong>Fri</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Sat</div>
+                            <div><strong>Sat</strong></div>
                         </div>
                     
                     
@@ -123,7 +123,7 @@ return(
                                 
                                 return(
                                 <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
-                                    {value}
+                                    <strong>{value}</strong>
                                     {(close)?
                                     <button className="btn btn-danger btn-sm m-1" onClick={()=> {sunday.splice(index, 1)}}>X</button> : ""}
                                     </div>
@@ -157,7 +157,7 @@ return(
                                 
                                 return(
                                 <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
-                                    {value}
+                                    <strong>{value}</strong>
                                     {(close)?
                                     <button className="btn btn-danger btn-sm m-1" onClick={()=> {monday.splice(index, 1)}}>X</button> : ""}
                                     </div>
@@ -190,7 +190,7 @@ return(
                                 
                                 return(
                                 <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
-                                    {value}
+                                    <strong>{value}</strong>
                                     {(close)?
                                     <button className="btn btn-danger btn-sm m-1" onClick={()=> {tuesday.splice(index, 1)}}>X</button> : ""}
                                     </div>
@@ -223,7 +223,7 @@ return(
                                 
                                 return(
                                 <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
-                                    {value}
+                                    <strong>{value}</strong>
                                     {(close)?
                                     <button className="btn btn-danger btn-sm m-1" onClick={()=> {wednesday.splice(index, 1)}}>X</button> : ""}
                                     </div>
@@ -256,7 +256,7 @@ return(
                                 
                                 return(
                                 <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
-                                    {value}
+                                    <strong>{value}</strong>
                                     {(close)?
                                     <button className="btn btn-danger btn-sm m-1" onClick={()=> {thursday.splice(index, 1)}}>X</button> : ""}
                                     </div>
@@ -289,7 +289,7 @@ return(
                                 
                                 return(
                                 <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
-                                    {value}
+                                    <strong>{value}</strong>
                                     {(close)?
                                     <button className="btn btn-danger btn-sm m-1" onClick={()=> {friday.splice(index, 1)}}>X</button> : ""}
                                     </div>
@@ -322,7 +322,7 @@ return(
                                 
                                 return(
                                 <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
-                                    {value}
+                                    <strong>{value}</strong>
                                     {(close)?
                                     <button className="btn btn-danger btn-sm m-1" onClick={()=> {saturday.splice(index, 1)}}>X</button> : ""}
                                     </div>
