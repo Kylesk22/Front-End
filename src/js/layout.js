@@ -5,6 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
 import { Gym } from "./views/gym";
 import { User } from "./views/user";
+import { ViewUser } from "./views/viewUser";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -31,6 +32,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/account/:user_id">
 							<User />
+						</Route>
+						<Route exact path="/view">
+							<ViewUser />
 						</Route>
 						<Route exact path="/register">
 							<Register />

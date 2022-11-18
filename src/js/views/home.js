@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 import { Navigate } from "react-router";
 import BKG from "../../img/weights.png";
+import { Post } from "../component/Post";
+
+
 
 
 export const Home = () => {
@@ -12,11 +15,13 @@ export const Home = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	let { userId } = useParams();
+	console.log(store.userPosts)
 
 	const handleClick = () => {
 		actions.login(email, password)
 		
 	};
+
 	
 
 	return(

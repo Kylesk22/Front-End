@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js"
 import Logo from "../../img/Spotter-1.png";
+
+import { Post } from "./Post.js";
+
 import "./navbar.css";
+
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -42,7 +46,9 @@ export const Navbar = () => {
 			}	
 			</div>
 		
-			
+			<Post>
+
+			</Post>
 		</nav>
 	);
 };
