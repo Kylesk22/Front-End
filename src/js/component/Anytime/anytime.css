@@ -5,3 +5,7 @@ ul {
     width: 700px;
    
 }
+
+myChatComponent {
+    z-index: 1;
+}

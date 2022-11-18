@@ -65,9 +65,9 @@ export const Anytime = (props)=> {
             </div>
         </div>
         {(openChat)?
-        <div>
-        <button className="btn btn-danger" style={{marginLeft: "750px"}} onClick={()=>{setOpenChat(false)}}>X</button>
-        <MyChatComponent user2= {user2}/>
+        <div style={{position: "absolute", zIndex: "1"}}>
+        <button className="btn btn-danger" style={{marginLeft: "250px"}} onClick={()=>{setOpenChat(false)}}>X</button>
+        <MyChatComponent  user2= {user2}/>
         
         </div>: ""
         }
