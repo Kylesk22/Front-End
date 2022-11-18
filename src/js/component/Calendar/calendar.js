@@ -47,44 +47,61 @@ export const Calendar = props => {
         return
     }
 
+    useEffect(()=> {
+        
+        setSunday(store.sunday);
+        setMonday(store.monday);
+        console.log(store.monday);
+        setTuesday(store.tuesday);
+        setWednesday(store.wednesday);
+        setThursday(store.thursday);
+        setFriday(store.friday);
+        setSaturday(store.saturday);
+        
+        
+    },[store.sunday, store.monday, store.tuesday, store.wednesday, store.thursday, store.friday, store.saturday])
+
    
-    // useEffect(()=> {
-    //     actions.getCalendar();
-    //     setSunday(store.sunday);
-    //     console.log(sunday);
-    // },[store.sunday])
+   
 
 
 
 return(
-    <div>
+    <div style={{marginTop: "50px", marginRight: "20px"}}>
+        <div className="row">
+            
+            <div className="col-4" style={{textAlign: "center", marginLeft: "260px"}}>
+                <h3>Workout Schedule</h3>
+            </div>
+        </div>
+        <div>
         <div className="row">
         <div className="col d-flex">
             
         </div>
-
-            <div className="col d-flex">
+            
+            <div className="col d-flex" id="cal">
                 
                         <div className="dates">
-                            <div>Sun</div>
+                            <div><strong>Sun</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Mon</div>
+                            <div><strong>Mon</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Tue</div>
+                            <div><strong>Tue</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Wed</div>
+                            <div><strong>Wed</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Thur</div>
+                            <div><strong>Thur</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Fri</div>
+                            <div><strong>Fri</strong></div>
                         </div>
                         <div className="dates">
-                            <div>Sat</div>
+                            <div><strong>Sat</strong></div>
                         </div>
                     
                     
@@ -92,9 +109,10 @@ return(
                 </div>
                     
                 </div>
+              
                 <div className="row">
 
-            <div className="col d-flex">
+                    <div className="col d-flex">
                
                 
                         <div className="nums" onMouseOver={()=>{setAddWorkout(true)}} onMouseLeave={()=>{setAddWorkout(false)}}>
@@ -102,10 +120,10 @@ return(
                             { (sunday != "")?
                             
                             sunday.map((value, index) => {
-                                console.log(sunday)
+                                
                                 return(
-                                <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}}>
-                                    {value}
+                                <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
+                                    <strong>{value}</strong>
                                     {(close)?
                                     <button className="btn btn-danger btn-sm m-1" onClick={()=> {sunday.splice(index, 1)}}>X</button> : ""}
                                     </div>
@@ -118,7 +136,7 @@ return(
                                 <div className="btn-group" role="group">
                                     <button id="btnGroupDrop1" type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div className="dropdown-menu" aria-labelledby="btnGroupDrop1"  >
-                                        <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setSunday([...sunday, "Chest"])), setOpenSave(true) }}>Chest</button> 
+                                        <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setSunday([...sunday, "Chest"])), setOpenSave(true), console.log(sunday) }}>Chest</button> 
                                         <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setSunday([...sunday, "Triceps"])), setOpenSave(true)}}>Triceps</button> 
                                         <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setSunday([...sunday, "Back"])), setOpenSave(true)}}>Back</button> 
                                         <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setSunday([...sunday, "Biceps"])), setOpenSave(true)}}>Biceps</button> 
@@ -131,16 +149,27 @@ return(
                             </div>: ""}
                             </div>
                         </div>
-                        <div className="nums" onMouseOver={()=>{setAddWorkout2(true)}} onMouseLeave={()=>{setAddWorkout2(false)}}>
+                        <div className="nums" onMouseOver={()=>{setAddWorkout2(true)}} onMouseLeave={()=>{setAddWorkout2(false)}} >
                             <div>
-                            {monday}
+                            { (monday != "")?
+                            
+                            monday.map((value, index) => {
+                                
+                                return(
+                                <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
+                                    <strong>{value}</strong>
+                                    {(close)?
+                                    <button className="btn btn-danger btn-sm m-1" onClick={()=> {monday.splice(index, 1)}}>X</button> : ""}
+                                    </div>
+                                )
+                            }) : ""}
                             {(addWorkout2)? 
                             <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 {/* <button type="button" className="btn btn-primary">Add</button> */}
                                 <div className="btn-group" role="group">
                                     <button id="btnGroupDrop1" type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setMonday([...monday, "Chest"])), setOpenSave(true)}}>Chest</button> 
+                                        <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {const chest = "Chest"; (setMonday([...monday, chest])), setOpenSave(true), console.log(monday)}}>Chest</button> 
                                         <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setMonday([...monday, "Triceps"])), setOpenSave(true)}}>Triceps</button> 
                                         <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setMonday([...monday, "Back"])), setOpenSave(true)}}>Back</button> 
                                         <button type="button" className="btn btn-primary" id="btnWO" onClick={() => {(setMonday([...monday, "Biceps"])), setOpenSave(true)}}>Biceps</button> 
@@ -155,7 +184,18 @@ return(
                         </div>
                         <div className="nums" onMouseOver={()=>{setAddWorkout3(true)}} onMouseLeave={()=>{setAddWorkout3(false)}}>
                             <div>
-                            {tuesday}
+                            {(tuesday != "")?
+                            
+                            tuesday.map((value, index) => {
+                                
+                                return(
+                                <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
+                                    <strong>{value}</strong>
+                                    {(close)?
+                                    <button className="btn btn-danger btn-sm m-1" onClick={()=> {tuesday.splice(index, 1)}}>X</button> : ""}
+                                    </div>
+                                )
+                            }) : ""}
                             {(addWorkout3)? 
                             <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 {/* <button type="button" className="btn btn-primary">Add</button> */}
@@ -177,7 +217,18 @@ return(
                         </div>
                         <div className="nums" onMouseOver={()=>{setAddWorkout4(true)}} onMouseLeave={()=>{setAddWorkout4(false)}}>
                             <div>
-                            {wednesday}
+                            {(wednesday != "")?
+                            
+                            wednesday.map((value, index) => {
+                                
+                                return(
+                                <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
+                                    <strong>{value}</strong>
+                                    {(close)?
+                                    <button className="btn btn-danger btn-sm m-1" onClick={()=> {wednesday.splice(index, 1)}}>X</button> : ""}
+                                    </div>
+                                )
+                            }) : ""}
                             {(addWorkout4)? 
                             <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 {/* <button type="button" className="btn btn-primary">Add</button> */}
@@ -199,7 +250,18 @@ return(
                         </div>
                         <div className="nums" onMouseOver={()=>{setAddWorkout5(true)}} onMouseLeave={()=>{setAddWorkout5(false)}}>
                             <div>
-                            {thursday}
+                            {(thursday != "")?
+                            
+                            thursday.map((value, index) => {
+                                
+                                return(
+                                <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
+                                    <strong>{value}</strong>
+                                    {(close)?
+                                    <button className="btn btn-danger btn-sm m-1" onClick={()=> {thursday.splice(index, 1)}}>X</button> : ""}
+                                    </div>
+                                )
+                            }) : ""}
                             {(addWorkout5)? 
                             <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 {/* <button type="button" className="btn btn-primary">Add</button> */}
@@ -221,7 +283,18 @@ return(
                         </div>
                         <div className="nums" onMouseOver={()=>{setAddWorkout6(true)}} onMouseLeave={()=>{setAddWorkout6(false)}}>
                             <div>
-                            {friday}
+                            {(friday != "")?
+                            
+                            friday.map((value, index) => {
+                                
+                                return(
+                                <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
+                                    <strong>{value}</strong>
+                                    {(close)?
+                                    <button className="btn btn-danger btn-sm m-1" onClick={()=> {friday.splice(index, 1)}}>X</button> : ""}
+                                    </div>
+                                )
+                            }) : ""}
                             {(addWorkout6)? 
                             <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 {/* <button type="button" className="btn btn-primary">Add</button> */}
@@ -243,7 +316,18 @@ return(
                         </div>
                         <div className="nums" onMouseOver={()=>{setAddWorkout7(true)}} onMouseLeave={()=>{setAddWorkout7(false)}}>
                             <div>
-                            {saturday}
+                            {(saturday != "")?
+                            
+                            saturday.map((value, index) => {
+                                
+                                return(
+                                <div key={index} onMouseOver={()=> {setClose(true);}} onMouseLeave={()=> {setClose(false)}} onClick={()=> {setClose(false)}}>
+                                    <strong>{value}</strong>
+                                    {(close)?
+                                    <button className="btn btn-danger btn-sm m-1" onClick={()=> {saturday.splice(index, 1)}}>X</button> : ""}
+                                    </div>
+                                )
+                            }) : ""}
                             {(addWorkout7)? 
                             <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 {/* <button type="button" className="btn btn-primary">Add</button> */}
@@ -281,11 +365,12 @@ return(
 
                 </div>
                 <div className="save">
-                {(openSave)? <button className="btn btn-primary" type="button" onClick={(e)=>{actions.setDays(sunday, monday, tuesday, wednesday, thursday, friday, saturday); actions.syncTokenFromSessionStore(); setOpenSave(false); actions.setCalendar(sunday, monday, tuesday, wednesday, thursday, friday, saturday, store.email, store.token); console.log(store.sunday)}}>Save</button>: ""}
+                {(openSave)? <button className="btn btn-primary" type="button" onClick={(e)=>{actions.setDays(sunday, monday, tuesday, wednesday, thursday, friday, saturday); actions.syncTokenFromSessionStore(); setOpenSave(false); actions.setCalendar(sunday, monday, tuesday, wednesday, thursday, friday, saturday, store.email, store.token); console.log(store.sunday); console.log(store.monday)}}>Save</button>: ""}
                 </div>
                 
                 
                     
+                </div>
                 </div>
     </div>
     )

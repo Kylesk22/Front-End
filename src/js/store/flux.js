@@ -97,7 +97,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			signup: async (email, password, first_name, last_name, gym2) => {
 
 				try {
-					const resp = await fetch('https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/signup', {
+
+					
+					const resp = await fetch('https://spotter1.herokuapp.com/api/signup', {
+
 						method: "POST", 
 						headers: {
 						"Content-Type": "application/json"
@@ -134,7 +137,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 			
 				try{
-					const resp = await fetch('https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/login', {
+
+					const resp = await fetch('https://spotter1.herokuapp.com/api/login', {
+
 						method: "POST",
 						headers: {
 						"Content-Type": "application/json"
@@ -160,8 +165,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 					sessionStorage.setItem("lastName", data.user.last_name);
 					let gym = data.gym
 					let gym1 = gym.replace(/</g , "").replace(/>/g, "")
-					console.log(gym1)
+					let sunArr = "";
+					let monArr = "";
+					let tueArr = "";
+					let wedArr = "";
+					let thuArr = "";
+					let friArr = "";
+					let satArr = "";
+					
 					sessionStorage.setItem("gym", gym1);
+					if (data.user.sunday !== "") {
+					let sun = data.user.sunday.replace(/{/g, "").replace(/}/g, "");
+					sunArr = sun.split(",")
+					}
+					if (data.user.monday !== "") {
+					let mon = data.user.monday.replace(/{/g, "").replace(/}/g, "");
+					monArr = mon.split(",")
+					}
+					if (data.user.tuesday !== "") {
+					let tue = data.user.tuesday.replace(/{/g, "").replace(/}/g, "");
+					tueArr = tue.split(",")
+					}
+					if (data.user.wednesday !== "") {
+					let wed = data.user.wednesday.replace(/{/g, "").replace(/}/g, "");
+					wedArr = wed.split(",")
+					}
+					if (data.user.thursday !== "") {
+					let thu = data.user.thursday.replace(/{/g, "").replace(/}/g, "");
+					thuArr = thu.split(",")
+					}
+					if (data.user.friday !== "") {
+					let fri = data.user.friday.replace(/{/g, "").replace(/}/g, "");
+					friArr = fri.split(",")
+					}
+					if (data.user.saturday !== "") {
+					let sat = data.user.satuday.replace(/{/g, "").replace(/}/g, "")
+					satArr = sat.split(",")
+					}
+
+
+					console.log(sunArr)
+					
+					
 					setStore({token: data.access_token});
 					setStore({email: email});
 					setStore({loggedIn: true});
@@ -169,13 +214,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({lastName: data.user.last_name});
 					setStore({gym: gym1});
 					setStore({friends: data.user.friends});
-					setStore({sunday: data.user.sunday});
-					setStore({monday: data.user.monday})
-					setStore({tuesday: data.user.tuesday})
-					setStore({wednesday: data.user.wednesday})
-					setStore({thursday: data.user.thursday})
-					setStore({friday: data.user.friday})
-					setStore({saturday: data.user.satuday})
+					setStore({sunday: sunArr});
+					setStore({monday: monArr});
+					setStore({tuesday: tueArr});
+					setStore({wednesday: wedArr});
+					setStore({thursday: thuArr});
+					setStore({friday: friArr});
+					setStore({saturday: satArr});
 
 					
 				
@@ -195,7 +240,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setCalendar: async(sunday, monday, tuesday, wednesday, thursday, friday, saturday, email, token) => {
 				try{
-					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/user/workouts/${email}` , {
+
+					const resp= await fetch(`https://spotter1.herokuapp.com/api/user/workouts/${email}` , {
+
 						method: ("POST"),
 						headers: {
 						"Content-Type": "application/json",
@@ -217,6 +264,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("ERROR")
 					return false
 				}
+				setStore({monday: monday});
+				setStore({tuesday: tuesday});
+				setStore({wednesday: wednesday});
+				setStore({thursday: thursday});
+				setStore({friday: friday});
+				setStore({saturday: saturday});
 				return true
 				}
 				catch(error) {
@@ -266,7 +319,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const email = sessionStorage.getItem("email");
 				
 				try{
-					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/user/workouts/${email}`, {
+
+					const resp = await fetch(`https://spotter1.herokuapp.com/api/user/workouts/${email}`, {
+
 						method: "GET",
 						headers: {
 						"Content-Type": "application/json",

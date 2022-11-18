@@ -25,19 +25,19 @@ export const Home = () => {
 	
 
 	return(
-		<div id = "bkg" style={{...{backgroundImage: `url(${BKG})`}, ...{backgroundSize: "1400px"} }}>
+		<div   id = "bkg" style={{...{backgroundImage: `url(${BKG})`}, ...{backgroundSize: "1500px"}}}>
 
 			<div className="row" style={{"textAlign": "center"}} >
-				<div className="col-6 mt-5" >
-					<h1 className="display-4" id="quote">Spotter</h1>
-					<h2 className="display-4" id="quote">"Together we grow"</h2>
+				<div className="col-6 mt-5">
+					<h1 className="display-4  " id="quote">Spotter</h1>
+					<h2 className="display-4 " id="quote">"Together we grow"</h2>
 					<h4 id="quote2">Connect with your gym community and grow together.</h4>
 					
 
 					
 				</div>
 				{(!store.loggedIn)? 
-				<div className="col-6">
+				<div className="col-6 mt-5">
 					<div className="form" onSubmit={() => alert("submitted")}>
 						<h3 id="login">Login</h3>
 						<input type= "text" placeholder="Email" value= {email} onChange={(e) => setEmail(e.target.value)}></input>
@@ -63,6 +63,9 @@ export const Home = () => {
 					</div>
 				</div> :<Redirect to= {`/account/`+ store.email}> </Redirect>
 				}
+			</div>
+			<div className="row mt-5">
+
 			</div>
 		</div>
 	)

@@ -1,3 +1,11 @@
 ul {
     list-style-type: none;
 }
+#Anytime {
+    width: 700px;
+   
+}
+
+myChatComponent {
+    z-index: 1;
+}
