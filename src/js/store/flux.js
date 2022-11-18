@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
 		store: {
+			userPosts: "",
 			token: null,
 			email: "",
 			loggedIn: false,
@@ -58,13 +59,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			post: async (title, content, email) => {
 				try {
-					const resp = await fetch(`/api/post/${email}`, {
+					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/post/${email}`, {
 						method: "POST", 
 						headers: {
 						"Content-Type": "application/json",
 
 						},
-						mode: "no-cors",
 						body: JSON.stringify({
 							"title": title,
 							"content": content
@@ -76,11 +76,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(err)
 				}
 			},
+			getUserPosts: async (email) => {
+				let resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/post/${email}`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				});
+				let data = await resp.json();
+				console.log(data)
+				const store = getStore();
+				setStore({"userPosts": data})
+				console.log(store.userPosts)
+			},
+				
 			
+			
+
+
 			signup: async (email, password, first_name, last_name, gym2) => {
 
 				try {
-					const resp = await fetch('https://3001-kylesk22-backend-qg4d3y57lwx.ws-us74.gitpod.io/api/signup', {
+					const resp = await fetch('https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/signup', {
 						method: "POST", 
 						headers: {
 						"Content-Type": "application/json"
@@ -117,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 			
 				try{
-					const resp = await fetch('https://3001-kylesk22-backend-qg4d3y57lwx.ws-us74.gitpod.io/api/login', {
+					const resp = await fetch('https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/login', {
 						method: "POST",
 						headers: {
 						"Content-Type": "application/json"
@@ -130,6 +147,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (resp.status !== 200) {
 						alert("Incorrect Username or Password")
 						return false
+					}
+					if (resp.status === 200) {
+						actions.getUserPosts(email)
 					}
 					
 					const data = await resp.json();		
@@ -175,7 +195,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setCalendar: async(sunday, monday, tuesday, wednesday, thursday, friday, saturday, email, token) => {
 				try{
-					const resp= await fetch(`https://3001-kylesk22-backend-qg4d3y57lwx.ws-us74.gitpod.io/api/user/workouts/${email}` , {
+					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/user/workouts/${email}` , {
 						method: ("POST"),
 						headers: {
 						"Content-Type": "application/json",
@@ -206,6 +226,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
+			followGym: async(email, gymName) => {
+				try {
+					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/follow/gym/${email}`, {
+						method: "POST", 
+						headers: {
+						"Content-Type": "application/json",
+
+						},
+						body: JSON.stringify({
+							"gym": gymName
+						})
+					})
+				} catch(err) {
+					return err
+				}
+			},
+
+			allGymFollowers: async(gymName) => {
+				try {
+					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/gym/followers${gymName}`, {
+						method: "GET", 
+						headers: {
+						"Content-Type": "application/json",
+						}
+					})
+				} catch(err) {
+					return err
+				}
+			},
+			
+			
 
 			
 			
@@ -215,7 +266,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const email = sessionStorage.getItem("email");
 				
 				try{
-					const resp = await fetch(`https://3001-kylesk22-backend-qg4d3y57lwx.ws-us74.gitpod.io/api/user/workouts/${email}`, {
+					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/user/workouts/${email}`, {
 						method: "GET",
 						headers: {
 						"Content-Type": "application/json",
