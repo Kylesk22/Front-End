@@ -57,38 +57,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({loggedIn: false});
 			},
 
-			post: async (title, content, email) => {
-				try {
-					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/post/${email}`, {
-						method: "POST", 
-						headers: {
-						"Content-Type": "application/json",
+			// post: async (title, content, email) => {
+			// 	try {
+			// 		const resp = await fetch(`https://3001-kylesk22-backend-m7tprqpv04i.ws-us84.gitpod.io/api/post/${email}`, {
+			// 			method: "POST", 
+			// 			headers: {
+			// 			"Content-Type": "application/json",
 
-						},
-						body: JSON.stringify({
-							"title": title,
-							"content": content
-						})
-					})
-				}
-				catch(err) {
-					alert("Post did not submit correctly check requirements");
-					console.error(err)
-				}
-			},
-			getUserPosts: async (email) => {
-				let resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/post/${email}`, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json"
-					}
-				});
-				let data = await resp.json();
-				console.log(data)
-				const store = getStore();
-				setStore({"userPosts": data})
-				console.log(store.userPosts)
-			},
+			// 			},
+			// 			body: JSON.stringify({
+			// 				"title": title,
+			// 				"content": content
+			// 			})
+			// 		})
+			// 	}
+			// 	catch(err) {
+			// 		alert("Post did not submit correctly check requirements");
+			// 		console.error(err)
+			// 	}
+			// },
+			// getUserPosts: async (email) => {
+			// 	let resp = await fetch(`https://3001-kylesk22-backend-m7tprqpv04i.ws-us84.gitpod.io/api/post/${email}`, {
+			// 		method: "GET",
+			// 		headers: {
+			// 			"Content-Type": "application/json"
+			// 		}
+			// 	});
+			// 	let data = await resp.json();
+			// 	console.log(data)
+			// 	const store = getStore();
+			// 	setStore({"userPosts": data})
+			// 	console.log(store.userPosts)
+			// },
 				
 			
 			
@@ -99,7 +99,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 
 					
-					const resp = await fetch('https://spotter1.herokuapp.com/api/signup', {
+					const resp = await fetch('https://3001-kylesk22-backend-m7tprqpv04i.ws-us84.gitpod.io/api/signup', {
 
 						method: "POST", 
 						headers: {
@@ -138,7 +138,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 				try{
 
-					const resp = await fetch('https://spotter1.herokuapp.com/api/login', {
+					const resp = await fetch('https://3001-kylesk22-backend-m7tprqpv04i.ws-us84.gitpod.io/api/login', {
 
 						method: "POST",
 						headers: {
@@ -153,9 +153,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert("Incorrect Username or Password")
 						return false
 					}
-					if (resp.status === 200) {
-						actions.getUserPosts(email)
-					}
+					// if (resp.status === 200) {
+					// 	actions.getUserPosts(email)
+					// }
 					
 					const data = await resp.json();		
 					console.log(data);
@@ -174,31 +174,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let satArr = "";
 					
 					sessionStorage.setItem("gym", gym1);
-					if (data.user.sunday !== "") {
+					if (data.user.sunday !== "" && data.user.sunday !== null) {
 					let sun = data.user.sunday.replace(/{/g, "").replace(/}/g, "");
 					sunArr = sun.split(",")
 					}
-					if (data.user.monday !== "") {
+					if (data.user.monday !== "" && data.user.monday !== null) {
 					let mon = data.user.monday.replace(/{/g, "").replace(/}/g, "");
 					monArr = mon.split(",")
 					}
-					if (data.user.tuesday !== "") {
+					if (data.user.tuesday !== "" && data.user.tuesday !== null) {
 					let tue = data.user.tuesday.replace(/{/g, "").replace(/}/g, "");
 					tueArr = tue.split(",")
 					}
-					if (data.user.wednesday !== "") {
+					if (data.user.wednesday !== "" && data.user.wednesday !== null) {
 					let wed = data.user.wednesday.replace(/{/g, "").replace(/}/g, "");
 					wedArr = wed.split(",")
 					}
-					if (data.user.thursday !== "") {
+					if (data.user.thursday !== "" && data.user.thursday !== null) {
 					let thu = data.user.thursday.replace(/{/g, "").replace(/}/g, "");
 					thuArr = thu.split(",")
 					}
-					if (data.user.friday !== "") {
+					if (data.user.friday !== "" && data.user.friday !== null) {
 					let fri = data.user.friday.replace(/{/g, "").replace(/}/g, "");
 					friArr = fri.split(",")
 					}
-					if (data.user.saturday !== "") {
+					if (data.user.saturday !== "" && data.user.saturday !== null) {
 					let sat = data.user.satuday.replace(/{/g, "").replace(/}/g, "")
 					satArr = sat.split(",")
 					}
@@ -241,7 +241,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCalendar: async(sunday, monday, tuesday, wednesday, thursday, friday, saturday, email, token) => {
 				try{
 
-					const resp= await fetch(`https://spotter1.herokuapp.com/api/user/workouts/${email}` , {
+					const resp= await fetch(`https://3001-kylesk22-backend-m7tprqpv04i.ws-us84.gitpod.io/api/user/workouts/${email}` , {
 
 						method: ("POST"),
 						headers: {
@@ -281,7 +281,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			followGym: async(email, gymName) => {
 				try {
-					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/follow/gym/${email}`, {
+					const resp = await fetch(`https://3001-kylesk22-backend-m7tprqpv04i.ws-us84.gitpod.io/api/follow/gym/${email}`, {
 						method: "POST", 
 						headers: {
 						"Content-Type": "application/json",
@@ -298,7 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			allGymFollowers: async(gymName) => {
 				try {
-					const resp = await fetch(`https://3001-kylesk22-backend-xrigaksu76j.ws-us74.gitpod.io/api/gym/followers${gymName}`, {
+					const resp = await fetch(`https://3001-kylesk22-backend-m7tprqpv04i.ws-us84.gitpod.io/api/gym/followers${gymName}`, {
 						method: "GET", 
 						headers: {
 						"Content-Type": "application/json",
@@ -320,7 +320,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 				try{
 
-					const resp = await fetch(`https://spotter1.herokuapp.com/api/user/workouts/${email}`, {
+					const resp = await fetch(`https://3001-kylesk22-backend-m7tprqpv04i.ws-us84.gitpod.io/api/user/workouts/${email}`, {
 
 						method: "GET",
 						headers: {

@@ -1,7 +1,7 @@
 
 
 nav {
-    background-color: white;
+    background-image: linear-gradient(black, black);
 }
 
 .welcome {
@@ -10,7 +10,7 @@ nav {
         src: local("RubikDistressed-Regular"),
           url("../../Fonts/RubikDistressed-Regular.ttf") format("truetype");
         font-size: xx-large;
-        color:#2a9fd6;
+        color:white;
         text-shadow: 1px 1px 3px black, 1px -1px 1px black, -1px 1px 1px black, -1px -1px 1px black;
 
 

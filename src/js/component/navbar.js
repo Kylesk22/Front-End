@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js"
-import Logo from "../../img/Spotter-1.png";
+import Logo from "../../img/Spotter-logos_white.png";
 
 import { Post } from "./Post.js";
 
@@ -32,7 +32,7 @@ export const Navbar = () => {
 			</Link>
 			<Link to= "/myGym">
 				<li className="nav-item">
-          			<a className="nav-link active" style={{color: "#2a9fd6;"}} href="#">My Gym
+          			<a className="nav-link active" style={{color: "white"}} href="#">My Gym
             			<span className="visually-hidden">(current)</span>
           			</a>
 				</li>
@@ -42,7 +42,7 @@ export const Navbar = () => {
 				<button className="btn btn-primary" onClick={actions.logout}>Logout</button>
 			</Link>
 			</div>: 
-			<div className="welcome" style={{marginRight: "550px"}}>Welcome To Spotter</div>
+			<div className="welcome" style={{marginRight: "550px"}}><i><strong>Welcome To Spotter</strong></i></div>
 			}	
 			</div>
 		

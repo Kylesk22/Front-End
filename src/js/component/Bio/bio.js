@@ -21,9 +21,9 @@ export const Bio = ()=> {
 
 
     return(
-    <div >
+    <div style={{textShadow:"3px 3px 3px black"}}>
         <h2>Name: {sessionStorage.getItem("firstName") + " " + sessionStorage.getItem("lastName")}</h2>
-        <h3 id="gym" >Gym: {
+        <h2 id="gym" style={{display: "flex", justifyContent: "center"}}>Gym: {
         (sessionStorage.getItem("gym") === "None")?
         <form className="form-group" onSubmit={(e)=> {sessionStorage.setItem("gym", select), e.preventDefault()}}>
         <select className="form-select mt-2 m-2" style={{width: "150px"}} value = {select} onChange={(e)=>{setSelect(e.target.value)}}>
@@ -33,10 +33,10 @@ export const Bio = ()=> {
         </select>
         <input type="submit" value= "Submit" className="btn btn-primary" ></input>
       </form>:
-        <div style = {{textAlign: "left", marginLeft: "2px"}}>
+        <div>
         {sessionStorage.getItem("gym")}
         </div>} 
-        </h3>
+        </h2>
 
        
     </div>

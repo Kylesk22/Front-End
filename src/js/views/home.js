@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 import { Navigate } from "react-router";
 import BKG from "../../img/weights.png";
+import BKG2 from "../../img/BrickWall.png";
 import { Post } from "../component/Post";
 
 
@@ -25,8 +26,9 @@ export const Home = () => {
 	
 
 	return(
-		<div   id = "bkg" style={{...{backgroundImage: `url(${BKG})`}, ...{backgroundSize: "1500px"}}}>
-
+		<div   id = "bkg2" style={{...{backgroundImage: `url(${BKG2})`}, ...{backgroundSize: "1500px"}}}>
+		{/* <div   id = "bkg" > */}
+			{/* <img src= {`${BKG}`} style={{width: "700px", opacity: ".5", borderRadius: "25px", boxShadow: "-5px -5px white", position: "absolute", marginLeft: "10px"}}></img> */}
 			<div className="row" style={{"textAlign": "center"}} >
 				<div className="col-6 mt-5">
 					<h1 className="display-4  " id="quote">Spotter</h1>
@@ -65,8 +67,11 @@ export const Home = () => {
 				}
 			</div>
 			<div className="row mt-5">
-
+				<div className="col">
+					
+				</div>
 			</div>
+		{/* </div> */}
 		</div>
 	)
 }

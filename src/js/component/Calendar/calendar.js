@@ -70,11 +70,11 @@ return(
     <div style={{marginTop: "50px", marginRight: "20px"}}>
         <div className="row">
             
-            <div className="col-4" style={{textAlign: "center", marginLeft: "260px"}}>
-                <h3>Workout Schedule</h3>
+            <div className="col-4" style={{textAlign: "center", marginLeft: "20px"}}>
+                <h3 style={{width: "500px", textShadow: "5px 5px 5px black"}}>Workout Schedule</h3>
             </div>
         </div>
-        <div>
+        <div style={{border: "black solid 1px" ,width: "562px", boxShadow: "5px 5px"}}>
         <div className="row">
         <div className="col d-flex">
             

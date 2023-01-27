@@ -23,7 +23,7 @@ export const ProfilePic = (props) => {
     <>
     <label htmlFor="image" className="pic">
       <input onChange={(e) => handleChange(e) } type="file" name="image" id="image" style={{display: "none"}}/>
-      <img id = "profileImage" src={pic}/>
+      <img id = "profileImage" src={pic} style={{borderRadius: "50%"}}/>
    </label>
    </>
     )
